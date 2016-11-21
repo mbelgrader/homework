@@ -1,3 +1,4 @@
+require 'byebug'
 class Simon
   COLORS = %w(red blue green yellow)
 
@@ -19,18 +20,25 @@ class Simon
   end
 
   def take_turn
-      show_sequence
-      require_sequence
-
-      unless game_over
-        round_success_message
-        @sequence_length += 1
-      end
+    show_sequence
+    require_sequence
+    round_success_message unless game_over
+    @sequence_length += 1
   end
 
   def show_sequence
+    system('clear')
+    puts "Get ready..."
+    sleep(2)
     add_random_color
-    puts seq
+
+    seq.each do |color|
+      system('clear')
+      puts color
+      sleep(1)
+      system('clear')
+      sleep(1)
+    end
   end
 
   def require_sequence
@@ -44,7 +52,7 @@ class Simon
   end
 
   def round_success_message
-    puts "You win!"
+    puts "You are correct!"
   end
 
   def game_over_message
