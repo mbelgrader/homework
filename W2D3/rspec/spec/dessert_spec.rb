@@ -7,36 +7,66 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 
 describe Dessert do
   let(:chef) { double("chef") }
+  let(:cake) { Dessert.new('cake' , 4, 'Vicky') }
 
   describe "#initialize" do
-    it "sets a type"
 
-    it "sets a quantity"
+    it "sets a type" do
+      expect(cake.type).to eq('cake')
+    end
 
-    it "starts ingredients as an empty array"
+    it "sets a quantity" do
+      expect(cake.quantity).to eq(4)
+    end
 
-    it "raises an argument error when given a non-integer quantity"
+    it "starts ingredients as an empty array" do
+      expect(cake.ingredients).to eq([])
+    end
+
+    it "raises an argument error when given a non-integer quantity" do
+      expect { Dessert.new('muffin', 'lots', 'Vicky') }.to raise_error(ArgumentError)
+    end
   end
 
   describe "#add_ingredient" do
-    it "adds an ingredient to the ingredients array"
+    it "adds an ingredient to the ingredients array" do
+      cake.add_ingredient('sugar')
+      expect(cake.ingredients).to include('sugar')
+    end
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      ingredients = ['sugar', 'flour', 'butter', 'chocolate']
+      ingredients.each do |el|
+        cake.add_ingredient(el)
+      end
+
+      expect(cake.ingredients).to eq(ingredients)
+      cake.mix!
+      expect(cake.ingredients).to_not eq(ingredients)
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      before = cake.quantity
+      cake.eat(2)
+      expect(cake.quantity).to_not eq(before)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect { cake.eat(10)}.to raise_error("not enough left!")
+    end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+
+    end
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the cake's chef with the cake passed in"
   end
 end
