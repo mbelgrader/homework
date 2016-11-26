@@ -6,8 +6,8 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 =end
 
 describe Dessert do
-  let(:chef) { double("chef") }
-  let(:cake) { Dessert.new('cake' , 4, 'Vicky') }
+  let(:chef) { double("chef", name: 'vicky') }
+  let(:cake) { Dessert.new('cake' , 4, chef) }
 
   describe "#initialize" do
 
@@ -24,7 +24,7 @@ describe Dessert do
     end
 
     it "raises an argument error when given a non-integer quantity" do
-      expect { Dessert.new('muffin', 'lots', 'Vicky') }.to raise_error(ArgumentError)
+      expect { Dessert.new('muffin', 'lots', 'vicky') }.to raise_error(ArgumentError)
     end
   end
 
@@ -62,11 +62,15 @@ describe Dessert do
 
   describe "#serve" do
     it "contains the titleized version of the chef's name" do
-
+      allow(chef).to receive(:titleize).and_return("Chef Vicky the Great Baker")
+      expect(cake.serve).to eq("Chef Vicky the Great Baker has made 4 cakes!")
     end
   end
 
   describe "#make_more" do
-    it "calls bake on the cake's chef with the cake passed in"
+    it "calls bake on the cake's chef with the dessert passed in" do
+      expect(chef).to receive(:bake).with(cake)
+      cake.make_more
+    end
   end
 end
