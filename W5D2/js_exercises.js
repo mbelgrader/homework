@@ -10,7 +10,7 @@ function fizzBuzz(array) {
   return result;
 }
 
-console.log(fizzBuzz([1,2,3,4,5,6,7,8,15,10]));
+// console.log(fizzBuzz([1,2,3,4,5,6,7,8,15,10]));
 
 function isPrime(n) {
   for (let i = 2; i < n; i++) {
@@ -24,10 +24,25 @@ function isPrime(n) {
 // console.log(isPrime(10));
 // console.log(isPrime(15485863));
 
-function sumOfNPrimes(n) {
-
+function firstNPrimes(n) {
+  let result = [];
+  for (let i = 2; result.length < n; i++) {
+    if (isPrime(i))
+      result.push(i);
+  }
+  return result;
 }
 
+// console.log(firstNPrimes(5));
+// 
+// function sumOfNPrimes(n) {
+//   let primes = firstNPrimes(n);
+//
+//   primes.reduce(function(a, b) {
+//     return a + b;
+//   }, 0);
+// }
+//
 // console.log(sumOfNPrimes(0));
 // console.log(sumOfNPrimes(1));
 // console.log(sumOfNPrimes(4));
