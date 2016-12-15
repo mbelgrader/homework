@@ -34,15 +34,16 @@ function firstNPrimes(n) {
 }
 
 // console.log(firstNPrimes(5));
-// 
-// function sumOfNPrimes(n) {
-//   let primes = firstNPrimes(n);
-//
-//   primes.reduce(function(a, b) {
-//     return a + b;
-//   }, 0);
-// }
-//
-// console.log(sumOfNPrimes(0));
-// console.log(sumOfNPrimes(1));
-// console.log(sumOfNPrimes(4));
+
+function sumOfNPrimes(n) {
+  let primes = firstNPrimes(n);
+  let sum = primes.reduce(function(a,b) {
+    return a + b;
+  }, 0);
+
+  return sum;
+}
+
+console.log(sumOfNPrimes(0));
+console.log(sumOfNPrimes(1));
+console.log(sumOfNPrimes(4));
