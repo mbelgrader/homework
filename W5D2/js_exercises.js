@@ -44,6 +44,17 @@ function sumOfNPrimes(n) {
   return sum;
 }
 
-console.log(sumOfNPrimes(0));
-console.log(sumOfNPrimes(1));
-console.log(sumOfNPrimes(4));
+// console.log(sumOfNPrimes(0));
+// console.log(sumOfNPrimes(1));
+// console.log(sumOfNPrimes(4));
+
+function allOrNothing(mod, ...nums) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % mod !== 0)
+      return false;
+  }
+  return true;
+}
+
+console.log(allOrNothing(3,9,12,6));
+console.log(allOrNothing(5,1,2,10));
